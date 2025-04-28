@@ -1,0 +1,129 @@
+:host {
+  --accent-color: #85f7cd;
+}
+
+/* Remove backdrop class entirely */
+
+/* Centered Modal Dialog */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #111;
+  color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+  z-index: 1000;
+}
+
+.modal-title {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ccc;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+input,
+textarea {
+  width: 89%;
+  padding: 10px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 5px var(--accent-color);
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.price-row,
+.stock-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.price-field,
+.stock-field {
+  flex: 1;
+  min-width: 45%;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.add-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.cancel-btn {
+  background-color: #222;
+  color: #ffffff;
+  border: 1px solid var(--accent-color);
+}
+
+.cancel-btn:hover {
+  background-color: #333;
+}
+
+.add-btn {
+  background-color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  color: #000;
+}
+
+.add-btn:disabled {
+  background-color: var(--accent-color);
+  color: #141414;
+  cursor: not-allowed;
+}
+
+.add-btn:hover:enabled {
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Style all inputs and textareas when .read-only-mode is applied */
+.read-only-mode input,
+.read-only-mode textarea {
+  background-color:#b2e0ce;
+  color:black;
+  cursor: not-allowed;
+}
+
+

@@ -1,0 +1,57 @@
+
+<div class="modal">
+  <h3 class="modal-title">Add New Products</h3>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <label for="productName">Product Name :</label>
+    <input id="productName" formControlName="productName" placeholder="Enter Product Name" />
+
+    <label for="productCategory">Product Category:</label>
+    <select id="productCategory"
+            formControlName="productCategory"
+            class="custom-select"
+            (change)="onCategoryChange($event)">
+      <option value="">Select Category</option>
+      <option *ngFor="let category of categories" [value]="category.category_id">
+        {{ category.category_name }}
+      </option>
+    </select>
+
+
+
+    <div class="price-row">
+      <div class="price-field">
+        <label for="costPrice">Cost Price :</label>
+        <input id="costPrice" formControlName="costPrice" type="number" placeholder="XX,XXX.XX" />
+      </div>
+      <div class="price-field">
+        <label for="sellingPrice">Selling Price :</label>
+        <input id="sellingPrice" formControlName="sellingPrice" type="number" placeholder="XX,XXX.XX" />
+      </div>
+    </div>
+
+    <label for="description">Description :</label>
+    <textarea id="description" formControlName="description" placeholder="Enter Description"></textarea>
+
+    <div class="stock-row">
+      <div class="stock-field">
+        <label for="availableStock">Available Stock :</label>
+        <input id="availableStock" formControlName="availableStock" type="number" placeholder="XX,XXX" />
+      </div>
+      <div class="stock-field">
+        <label for="unitsSold">Units Sold :</label>
+        <input id="unitsSold" formControlName="unitsSold" type="number" placeholder="XX,XXX" />
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+      <button type="submit" class="add-btn" [disabled]="productForm.invalid">Add</button>
+    </div>
+  </form>
+</div>
+
+
+<div class="success-popup" *ngIf="showSuccessMessage">
+  ✅ Product added successfully!
+</div>

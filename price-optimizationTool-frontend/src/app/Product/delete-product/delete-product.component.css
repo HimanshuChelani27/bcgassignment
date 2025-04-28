@@ -1,0 +1,26 @@
+.delete-dialog-container {
+  background-color: #000; /* Black background */
+  color: #85f7cd;         /* Mint green text */
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.delete-dialog-container h2,
+.delete-dialog-container p {
+  color: #85f7cd;
+}
+
+.cancel-btn {
+  color: #85f7cd;
+}
+
+.delete-btn {
+  color: #000;
+  background-color: #85f7cd;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.delete-btn:hover {
+  background-color: #73eec0;
+}

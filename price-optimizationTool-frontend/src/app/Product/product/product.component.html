@@ -1,0 +1,153 @@
+<div class="main-container">
+  <header>
+    <div class="title">
+      <h1>Price Optimization Tool</h1>
+    </div>
+    <div class="user-info">
+      <span class="welcome-text">Welcome, <span class="username">{{ username }}</span></span>
+      <div class="avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <button (click)="Back()" mat-button class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+    <span class="page-title">Create and Manage Product</span>
+
+    <div class="toggle-switch">
+      <mat-slide-toggle [(ngModel)]="withDemandForecast" (change)="updateDisplayedColumns()" >
+        With Demand Forecast
+      </mat-slide-toggle>
+    </div>
+
+    <div class="search-bar">
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="Search" [(ngModel)]="searchQuery" (keyup)="applyFilter($event)">
+      </mat-form-field>
+    </div>
+
+    <span>Category:</span>
+    <div class="category-filter">
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="selectedCategory" (selectionChange)="filterByCategory()">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-stroked-button (click)="filter()">
+      <mat-icon>filter_list</mat-icon>
+      Filter
+    </button>
+    <div class="action-buttons">
+      <button mat-raised-button  (click)="addNewProduct()">
+        <mat-icon>add</mat-icon>
+        Add New Products
+      </button>
+      <button mat-stroked-button (click)="openDemandForecast()">
+        <mat-icon>trending_up</mat-icon>
+        Demand Forecast
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container mat-elevation-z2">
+    <mat-table [dataSource]="dataSource" class="product-table">
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="toggleSelectAll($event.checked)"
+            [checked]="isAllSelected()"
+          ></mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <mat-checkbox
+            [(ngModel)]="product.selected"
+            (change)="onSelectionChange()"
+          ></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Product Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef>Product Category</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.category_name }}</mat-cell>
+      </ng-container>
+
+      <!-- Cost Price Column -->
+      <ng-container matColumnDef="costPrice">
+        <mat-header-cell *matHeaderCellDef>Cost Price</mat-header-cell>
+        <mat-cell *matCellDef="let product">$ {{ product.cost_price }}</mat-cell>
+      </ng-container>
+
+      <!-- Selling Price Column -->
+      <ng-container matColumnDef="sellingPrice">
+        <mat-header-cell *matHeaderCellDef>Selling Price</mat-header-cell>
+        <mat-cell *matCellDef="let product">$ {{ product.selling_price }}</mat-cell>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+        <mat-cell *matCellDef="let product" class="description-cell">{{ product.description }}</mat-cell>
+      </ng-container>
+
+      <!-- Available Stock Column -->
+      <ng-container matColumnDef="availableStock">
+        <mat-header-cell *matHeaderCellDef>Available Stock</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.stock_available | number }}</mat-cell>
+      </ng-container>
+
+      <!-- Units Sold Column -->
+      <ng-container matColumnDef="unitsSold">
+        <mat-header-cell *matHeaderCellDef>Units Sold</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.units_sold | number }}</mat-cell>
+      </ng-container>
+
+      <!-- Calculated Demand Column -->
+      <ng-container *ngIf="withDemandForecast" matColumnDef="demand_forecast">
+        <mat-header-cell *matHeaderCellDef>Demand forecast</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.demand_forecast | number }}</mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <button mat-icon-button matTooltip="View" (click)="viewProduct(product)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Edit" color="primary" (click)="editProduct(product)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Delete" color="warn" (click)="openDeleteDialog(product)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="footer">
+    <button mat-stroked-button (click)="cancel()" >Cancel</button>
+    <button mat-raised-button (click)="saveChanges()">Save</button>
+  </div>
+</div>

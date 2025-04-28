@@ -1,0 +1,33 @@
+<div class="auth-backdrop">
+  <div class="auth-modal">
+    <h3 *ngIf="isLogin">Login</h3>
+    <h3 *ngIf="!isLogin">Sign Up</h3>
+
+    <form [formGroup]="authForm" (ngSubmit)="submit()">
+      <ng-container *ngIf="!isLogin">
+        <label>Name:</label>
+        <input formControlName="name" placeholder="Enter your name" />
+
+        <label>Role:</label>
+        <select formControlName="role">
+          <option *ngFor="let r of roles" [value]="r.name">{{ r.name | titlecase }}</option>
+        </select>
+
+       
+      </ng-container>
+
+      <label>Email:</label>
+      <input formControlName="email" type="email" placeholder="Enter your email" />
+
+      <label>Password:</label>
+      <input formControlName="password" type="password" placeholder="Enter your password" />
+
+      <div class="auth-actions">
+        <button type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
+        <button type="button" (click)="switchMode()">
+          {{ isLogin ? 'Switch to Sign Up' : 'Switch to Login' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

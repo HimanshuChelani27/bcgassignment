@@ -1,0 +1,75 @@
+.forecast-dialog {
+  background-color: #1c1c1c;
+  color: white;
+  padding: 24px;
+  /*border-radius: 12px;*/
+  /*width: 100%;*/
+  box-shadow: 0 0 20px rgba(0, 255, 195, 0.2);
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 47px;
+}
+
+.dialog-title {
+  color: #00ffc3;
+  font-weight: bold;
+}
+
+.close-btn mat-icon {
+  color: red;
+}
+
+.chart-container {
+  background-color: #121212;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.table-container {
+  overflow-x: auto;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 16px;
+  /*width: fit-content;*/
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+th {
+  text-align: left;
+  background-color: #1c1c1c;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  color: white;
+}
+
+.striped {
+  background-color: #1a1a1a;
+}
+
+.highlight {
+  background-color: #00ffc3;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+::ng-deep .custom-dialog-container {
+  width: 90vw;
+  max-width: 1200px;
+  background-color: transparent;
+  box-shadow: none;
+}
+

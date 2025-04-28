@@ -1,0 +1,40 @@
+<div class="forecast-dialog">
+  <div class="dialog-header">
+    <h2 class="dialog-title">Demand Forecast</h2>
+    <button  (click)="closeDialog()" class="close-btn" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="chart-container">
+    <!-- Example chart container (replace with actual chart component) -->
+    <canvas #forecastChart></canvas>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Product Category</th>
+        <th>Cost Price</th>
+        <th>Selling Price</th>
+        <th>Available Stock</th>
+        <th>Units Sold</th>
+        <th>Calculated Demand Forecast</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of forecastData; let i = index" [ngClass]="{ 'striped': i % 2 !== 0 }">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category_name }}</td>
+        <td>$ {{ item.cost_price }}</td>
+        <td>$ {{ item.selling_price }}</td>
+        <td>{{ item.stock_available }}</td>
+        <td>{{ item.units_sold }}</td>
+        <td class="highlight">{{ item.demand_forecast }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

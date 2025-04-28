@@ -1,0 +1,66 @@
+
+:host {
+  --accent-color: #85f7cd;       
+}
+.auth-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.auth-modal {
+  background-color: #222;
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 27%;
+  height:60%;
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+.auth-modal h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.auth-modal label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.auth-modal input,
+.auth-modal select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.auth-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.auth-actions button {
+  background: var(--accent-color);
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-actions button:hover {
+  background: var(--accent-color);
+}
